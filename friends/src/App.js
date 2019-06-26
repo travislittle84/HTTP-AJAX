@@ -30,18 +30,12 @@ class App extends React.Component {
   }
 
   addFriend = newFriend => {
-    this.setState({
-      friends: [...this.state.friends, newFriend]
-    })
+    // TO DO DAY 2
   }
   
   submitHander = event => {
     event.preventDefault();
-    this.addFriend({
-      name: this.state.newFriend.name,
-      age: this.state.newFriend.age,
-      email: this.state.newFriend.email
-    })
+    // TO DO DAY 2
   }
 
   changeHandler = event => {
