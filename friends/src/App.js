@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import ListFriends from './components/ListFriends'
-import AddFriendForm from './components/AddFriendForm'
+
 import './App.css';
 
 class App extends React.Component {
@@ -10,11 +10,9 @@ class App extends React.Component {
     super();
     this.state = {
       friends: [],
-      newFriend: {
-        name: "",
-        age: "",
-        email: ""
-      }
+      name: '',
+      age: '',
+      email: '',
     }
   }
   componentDidMount() {
@@ -33,41 +31,52 @@ class App extends React.Component {
     // TO DO DAY 2
   }
   
-  submitHander = event => {
+  createFriend = event => {
     event.preventDefault();
-    // TO DO DAY 2
+    const { name, age, email } = this.state
+    const payload = {name, age, email}
+
+    axios.post("http://localhost:5000/friends", payload)
+      .then((response) => {
+        this.setState({
+          friends: response.data
+        })
+        console.log("Friend added", response.data)
+      })
+      .catch((error) => {
+        console.log("an error", error.response.data.error)
+      })
   }
 
   changeHandler = event => {
     this.setState({
-      newFriend: event.target.value
+      [event.target.name]: event.target.value
     })
   }
 
   render(){    
-    const  items  = this.state.friends
     return (
       <div className="App">
-        <ListFriends friends={items}/>
-        <form onSubmit={this.submitHander} >
+        <ListFriends friends={this.state.friends}/>
+        <form onSubmit={this.createFriend} >
                 <input 
-                    id="newFriendName"
+                    name="name"
                     type="text"
-                    value={this.state.newFriend.name}
+                    value={this.state.name}
                     placeholder="new friend name"
                     onChange={this.changeHandler}                
                 />
                 <input 
-                    id="newFriendAge"
-                    type="text"
-                    value={this.state.newFriend.age}
+                    name="age"
+                    type="number"
+                    value={this.state.age}
                     placeholder="age"
                     onChange={this.changeHandler}                
                 />
                 <input 
-                    id="newFriendEmail"
+                    name="email"
                     type="text"
-                    value={this.state.newFriend.email}
+                    value={this.state.email}
                     placeholder="email"
                     onChange={this.changeHandler}                
                 />

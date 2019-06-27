@@ -1,9 +1,6 @@
 import React from 'react'
 
 function ListFriends(props) {
-    if(props.friends.length > 0) {
-        console.log("props", props.friends)
-    }
       
     return (
     <div>
