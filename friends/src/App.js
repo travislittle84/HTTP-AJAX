@@ -1,7 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+import { Route } from 'react-router-dom'
 
 import ListFriends from './components/ListFriends'
+import CreateFriend from './components/CreateFriend'
+import Friend from './components/Friend'
 
 import './App.css';
 
@@ -10,9 +13,6 @@ class App extends React.Component {
     super();
     this.state = {
       friends: [],
-      name: '',
-      age: '',
-      email: '',
     }
   }
   componentDidMount() {
@@ -27,61 +27,22 @@ class App extends React.Component {
       })
   }
 
-  addFriend = newFriend => {
-    // TO DO DAY 2
-  }
-  
-  createFriend = event => {
-    event.preventDefault();
-    const { name, age, email } = this.state
-    const payload = {name, age, email}
-
-    axios.post("http://localhost:5000/friends", payload)
-      .then((response) => {
-        this.setState({
-          friends: response.data
-        })
-        console.log("Friend added", response.data)
-      })
-      .catch((error) => {
-        console.log("an error", error.response.data.error)
-      })
+  updateFriends = (friends) => {
+    this.setState({ friends })
   }
 
-  changeHandler = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
+  render(){
+    
+    const { friends } = this.state
 
-  render(){    
     return (
       <div className="App">
-        <ListFriends friends={this.state.friends}/>
-        <form onSubmit={this.createFriend} >
-                <input 
-                    name="name"
-                    type="text"
-                    value={this.state.name}
-                    placeholder="new friend name"
-                    onChange={this.changeHandler}                
-                />
-                <input 
-                    name="age"
-                    type="number"
-                    value={this.state.age}
-                    placeholder="age"
-                    onChange={this.changeHandler}                
-                />
-                <input 
-                    name="email"
-                    type="text"
-                    value={this.state.email}
-                    placeholder="email"
-                    onChange={this.changeHandler}                
-                />
-                <button type="submit">Add Friend</button>
-            </form>
+        {/* <ListFriends friends={this.state.friends}/> */}
+        
+
+        <Route exact path="/" render={(props) => <ListFriends {...props} friends={friends}/>} />
+        <Route path="/friend/:id" render={(props) => <Friend {...props} friends={friends}/>} />
+        <CreateFriend updateFriends={this.updateFriends} />
       </div>
     );
   }
