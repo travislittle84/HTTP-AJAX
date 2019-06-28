@@ -1,9 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 
-class CreateFriend extends React.Component {
-    constructor(props) {
-        super(props)
+class EditFriend extends React.Component {
+    constructor() {
+        super()
         this.state ={
             name: '',
             age: '',
@@ -16,7 +16,7 @@ class CreateFriend extends React.Component {
           [event.target.name]: event.target.value
         })
     }
-
+// TO DO - CONVERT THIS TO AN EDIT COMPONENT 
     addFriend = event => {
         event.preventDefault();
         const { name, age, email } = this.state
@@ -58,7 +58,7 @@ class CreateFriend extends React.Component {
                         onChange={this.changeHandler}                
                     />
                     {/* {!this.state.friends ? <button type="submit">Add Friend</button> : <button type="submit">Update Friend</button>}  */}
-                    <button type="submit">Add Friend</button>
+                    <button type="submit">Edit Friend</button>
                 </form>
             </div>
         )
@@ -66,4 +66,4 @@ class CreateFriend extends React.Component {
     
 }
 
-export default CreateFriend;
+export default EditFriend;

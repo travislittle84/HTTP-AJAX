@@ -2,15 +2,20 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import Friend from './Friend'
+import EditFriend from './EditFriend'
+import CreateFriend from './CreateFriend'
 
 function ListFriends(props) {
       
     return (
     <div>
-        {props.friends.map((item) => (
+        {props.friends.map((friend) => (
+            <Link to={`/friends/${friend.id}`} key={friend.id}>
+                <p>{friend.name}</p>
+            </Link>
             
-            <p>{item.name}</p>
         ))}
+        <CreateFriend updateFriends={props.updateFriends} friends={props.friends} />
     </div>
     );
 }
