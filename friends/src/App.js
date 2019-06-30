@@ -36,10 +36,8 @@ class App extends React.Component {
 
     return (
       <div className="App">      
-
         <Route exact path="/" render={(props) => <ListFriends {...props} updateFriends={this.updateFriends} friends={friends}/>} />
         <Route path="/friends/:id" render={(props) => <Friend {...props} friends={friends} updateFriends={this.updateFriends}/>} />
-        {/* <CreateFriend updateFriends={this.updateFriends} friends={friends} /> */}
       </div>
     );
   }

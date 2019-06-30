@@ -81,10 +81,7 @@ class Friend extends React.Component {
                 </div>
             </div>
         )
-    }
-    
-
-    
+    } 
 }
 
 export default Friend;
