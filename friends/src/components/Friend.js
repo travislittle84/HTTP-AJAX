@@ -4,10 +4,15 @@ import axios from 'axios'
 class Friend extends React.Component {
     constructor(){
         super();
+        const staticName = ''
+        const staticAge = ''
+        const staticEmail = ''
+        
         this.state ={
             name: '',
             age: '',
             email: '',
+            friend: {}
         }
     }
 
@@ -21,6 +26,9 @@ class Friend extends React.Component {
             age: friend.age,
             email: friend.email
         })
+        this.staticName = friend.name
+        this.staticAge = friend.age
+        this.staticEmail = friend.email
     }
 
     changeHandler = event => {
@@ -40,6 +48,7 @@ class Friend extends React.Component {
         .then((response) => {
             this.props.updateFriends(response.data)
             console.log("friend edited", response.data[response.data.length - 1])
+            this.props.history.push(`/`)
         })
         .catch((error) => {
             console.log("an error", error)
@@ -49,10 +58,10 @@ class Friend extends React.Component {
     render(){
         return (
             <div>
-                EDIT FRIEND
-                <h1>{this.state.name}</h1>
-                <p>Age: {this.state.age}</p>
-                <p>Email: {this.state.email}</p>
+                EDIT FRIEND                
+                <h1>{this.staticName}</h1>
+                <p>Age: {this.staticAge}</p>
+                <p>Email: {this.staticEmail}</p>
                 <div>
                     <form onSubmit={this.editFriend} >
                         <input 
@@ -83,5 +92,4 @@ class Friend extends React.Component {
         )
     } 
 }
-
 export default Friend;
