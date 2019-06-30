@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Route } from 'react-router-dom'
 
 import ListFriends from './components/ListFriends'
-import CreateFriend from './components/CreateFriend'
 import Friend from './components/Friend'
 
 import './App.css';
@@ -38,7 +37,7 @@ class App extends React.Component {
     return (
       <div className="App">      
 
-        <Route exact path="/" render={(props) => <ListFriends {...props} friends={friends}/>} />
+        <Route exact path="/" render={(props) => <ListFriends {...props} updateFriends={this.updateFriends} friends={friends}/>} />
         <Route path="/friends/:id" render={(props) => <Friend {...props} friends={friends} updateFriends={this.updateFriends}/>} />
         {/* <CreateFriend updateFriends={this.updateFriends} friends={friends} /> */}
       </div>

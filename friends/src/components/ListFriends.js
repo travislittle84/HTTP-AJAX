@@ -1,8 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 
-import Friend from './Friend'
-import EditFriend from './EditFriend'
 import CreateFriend from './CreateFriend'
 
 function ListFriends(props) {
@@ -16,6 +14,7 @@ function ListFriends(props) {
             
         ))}
         <CreateFriend updateFriends={props.updateFriends} friends={props.friends} />
+        
     </div>
     );
 }

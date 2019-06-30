@@ -57,7 +57,6 @@ class CreateFriend extends React.Component {
                         placeholder="email"
                         onChange={this.changeHandler}                
                     />
-                    {/* {!this.state.friends ? <button type="submit">Add Friend</button> : <button type="submit">Update Friend</button>}  */}
                     <button type="submit">Add Friend</button>
                 </form>
             </div>
