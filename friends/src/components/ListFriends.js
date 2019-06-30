@@ -13,7 +13,7 @@ function ListFriends(props) {
                 <Link to={`/friends/${friend.id}`} key={friend.id}>
                     {friend.name}
                 </Link>
-                <DeleteFriend updateFriends={props.updateFriends} friend={friend}/>
+                <DeleteFriend updateFriends={props.updateFriends} friend={friend} />
             </div>
         ))}
         <CreateFriend updateFriends={props.updateFriends} friends={props.friends} />
